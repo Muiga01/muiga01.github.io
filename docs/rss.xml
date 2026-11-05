@@ -1,5 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>P7IVESC's blog</title><link>https://P7IVESC.github.io</link><description>知其黑，守其白。技术交流请备注来源：emhlcGluZzA1MDc=</description><copyright>P7IVESC's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/237383456?v=4&amp;size=64</url><title>avatar</title><link>https://P7IVESC.github.io</link></image><lastBuildDate>Thu, 05 Nov 2026 07:21:00 +0000</lastBuildDate><managingEditor>P7IVESC's blog</managingEditor><ttl>60</ttl><webMaster>P7IVESC's blog</webMaster><item><title>无镜小迪 VPC 靶场渗透实录</title><link>https://P7IVESC.github.io/post/wu-jing-xiao-di-%20VPC%20-ba-chang-shen-tou-shi-lu.html</link><description>目标地址：192.168.111.79
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>P7IVESC's blog</title><link>https://P7IVESC.github.io</link><description>知其黑，守其白。技术交流请备注来源：emhlcGluZzA1MDc=</description><copyright>P7IVESC's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/237383456?v=4&amp;size=64</url><title>avatar</title><link>https://P7IVESC.github.io</link></image><lastBuildDate>Thu, 05 Nov 2026 07:34:05 +0000</lastBuildDate><managingEditor>P7IVESC's blog</managingEditor><ttl>60</ttl><webMaster>P7IVESC's blog</webMaster><item><title>CMS_YXC1渗透测试报告</title><link>https://P7IVESC.github.io/post/CMS_YXC1-shen-tou-ce-shi-bao-gao.html</link><description>首先拿到内网ip：10.7.11.83，并没有给端口，于是我们先用fscan扫描端口
+
+./fscan -h 10.7.11.83 -p 1-30000
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/745b9537080b.webp)
+
+访问http://10.7.11.83:20048进入网站
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/28a4dbc7b290.webp)
+
+打开网站
+
+利用xray进行被动扫描
+
+xray_windows_amd64.exe webscan --listen 127.0.0.1:7777 --html-output result.html
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/a643c2b0adb8.webp)
+
+配置浏览器代理
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/9a5d7400cf29.png)
+
+扫描结束之后，分析报告
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/bdb02804ba58.webp)
+
+发现目标网站的 `keywords` GET 参数存在 **SQL 注入漏洞，还可能存在 XSS（跨站脚本）漏洞**
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/926965d9b756.webp)
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/6ba51a8f7545.webp)
+
+先拿去sqlmap进行自动化注入测试
+
+测试注入点
+
+sqlmap -u ' http://10.7.11.83:20048/index.php?r=default%2Findex%2Fsearch&amp;keywords=1%C2%B711&amp;type=all' --batch
+
+![](https://cdn.jsdelivr.net/gh/P7IVESC/img@main/2026/11/417b2754ed43.webp)
+
+目标网站的 `keywords` GET 参数存在 **SQL 注入漏洞**，且是 MySQL 数据库下的多种注入类型。</description><guid isPermaLink="true">https://P7IVESC.github.io/post/CMS_YXC1-shen-tou-ce-shi-bao-gao.html</guid><pubDate>Thu, 05 Nov 2026 07:33:34 +0000</pubDate></item><item><title>无镜小迪 VPC 靶场渗透实录</title><link>https://P7IVESC.github.io/post/wu-jing-xiao-di-%20VPC%20-ba-chang-shen-tou-shi-lu.html</link><description>目标地址：192.168.111.79
 
 本机地址：192.168.111.25
 
