@@ -37,8 +37,13 @@
     var path = document.getElementById("pathRSS");
     if (path) {
       if (svg) svg.setAttribute("viewBox", "0 0 24 24");
+      /* 用线描风格，跟旁边「搜索 / 主题」的线性图标保持一致 */
       path.removeAttribute("fill-rule");
-      path.setAttribute("d", "M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z");
+      path.setAttribute("d", "M12 2.5 4 5.8v5.9c0 4.7 3.4 9.2 8 10.3 4.6-1.1 8-5.6 8-10.3V5.8L12 2.5z");
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "currentColor");
+      path.setAttribute("stroke-width", "1.8");
+      path.setAttribute("stroke-linejoin", "round");
     }
     a.href = p.href;
     a.title = p.label;
