@@ -27,15 +27,23 @@
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ext">' +
     '<path d="M7 17 17 7M9 7h8v8"/></svg>';
 
-  /* 头图区的链接按钮 */
-  function profileLinksHtml() {
-    return PROFILES.map(function (p) {
-      return (
-        '<a class="hero-link" href="' + esc(p.href) + '" target="_blank" rel="noopener noreferrer"' +
-        ' title="' + esc(p.note || p.label) + '">' +
-        ICON_SHIELD + "<span>" + esc(p.label) + "</span>" + ICON_EXT + "</a>"
-      );
-    }).join("");
+  /* 顶栏圆钮：把 Gmeek 自带的 RSS 图标换成 PROFILES[0] 的外部主页入口 */
+  function initHeaderEntry() {
+    if (!PROFILES.length) return;
+    var a = document.getElementById("buttonRSS");
+    if (!a) return;
+    var p = PROFILES[0];
+    var svg = a.querySelector("svg");
+    var path = document.getElementById("pathRSS");
+    if (path) {
+      if (svg) svg.setAttribute("viewBox", "0 0 24 24");
+      path.removeAttribute("fill-rule");
+      path.setAttribute("d", "M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z");
+    }
+    a.href = p.href;
+    a.title = p.label;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
   }
 
   /* 文章页侧栏的链接卡 */
@@ -100,9 +108,8 @@
       "<span><b>" + items.length + "</b> 篇文章</span>" +
       "<span><b>" + countLabels(items) + "</b> 个标签</span>" +
       '<span><b class="stat-imgs">—</b> 图片</span>' +
-      "<span><b>RSS</b> 订阅</span>" +
-      "</div>" +
-      '<div class="hero-links">' + profileLinksHtml() + "</div>" +
+      '<a class="stat-rss" href="/rss.xml" target="_blank" rel="noopener noreferrer"' +
+      ' title="用阅读器订阅，新文章自动送达"><b>RSS</b> 订阅</a>' +
       "</div>";
 
     var head = document.createElement("div");
@@ -465,4 +472,5 @@
   /* 放在最后：确保上面的常量（缓存等）都已初始化 */
   if (hasPost) initPost();
   else initList();
+  initHeaderEntry();
 })();

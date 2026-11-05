@@ -171,6 +171,23 @@ body:has(.hero) .hero { padding-top: 10px; }
 .hero-stats b { color: var(--fg); font-weight: 600; font-size: 15px; }
 .hero-stats span { display: inline-flex; align-items: baseline; gap: 5px; }
 
+/* 统计行里的 RSS 订阅入口（真链接，不是装饰文字） */
+.hero-stats a.stat-rss {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--fg-mute);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 1px;
+  transition: color 0.18s, border-color 0.18s;
+}
+.hero-stats a.stat-rss b { color: var(--fg); }
+.hero-stats a.stat-rss:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
 /* 头图区外链按钮（EduSRC 等） */
 .hero-links {
   display: flex;
