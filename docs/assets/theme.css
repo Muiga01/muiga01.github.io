@@ -627,3 +627,98 @@ body:has(.hero) .hero { padding-top: 10px; }
   from { background-position: 130% 0; }
   to { background-position: -30% 0; }
 }
+
+/* ============================================================
+   标签 / 搜索页（tag.html）：这里不是文章页，单独收拾一下
+   ============================================================ */
+body:has(.tagTitle) {
+  max-width: 880px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+body:has(.tagTitle) #header { align-items: center; gap: 10px; }
+body:has(.tagTitle) .tagTitle { font-family: var(--font-serif); font-size: 26px; font-weight: 700; }
+body:has(.tagTitle) .tagTitle::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-right: 12px;
+  vertical-align: -4px;
+}
+
+body:has(.tagTitle) .subnav-search { display: flex; align-items: center; margin-right: 6px; }
+body:has(.tagTitle) .subnav-search-input {
+  width: 190px !important;
+  height: 32px !important;
+  border-radius: 8px 0 0 8px !important;
+  border: 1px solid var(--line) !important;
+  background: var(--bg-elev) !important;
+  color: var(--fg) !important;
+  padding: 0 10px !important;
+}
+body:has(.tagTitle) .subnav-search button {
+  white-space: nowrap;
+  min-width: 56px;
+  border-radius: 0 8px 8px 0 !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border: 1px solid var(--line) !important;
+  border-left: none !important;
+  background: var(--bg-sunken) !important;
+  color: var(--fg-soft) !important;
+}
+
+/* 标签胶囊 */
+body:has(.tagTitle) #taglabel { margin: 4px 0 18px !important; }
+body:has(.tagTitle) #taglabel .Label {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  margin: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+/* 条目：一条一行，别挤在一起 */
+body:has(.tagTitle) .SideNav-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 4px !important;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  transition: padding-left 0.2s, color 0.2s;
+}
+body:has(.tagTitle) .SideNav-item:hover { padding-left: 10px !important; color: var(--accent) !important; }
+body:has(.tagTitle) .listLabels {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+body:has(.tagTitle) .listLabels .Label {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+}
+body:has(.tagTitle) .listLabels .Label object { display: inline; height: auto; }
+body:has(.tagTitle) .listLabels .Label object a { color: #fff !important; text-decoration: none; }
+body:has(.tagTitle) .listTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body:has(.tagTitle) .SideNav-icon { margin-right: 10px; color: var(--fg-mute); }
