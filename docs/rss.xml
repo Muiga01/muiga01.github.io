@@ -1,2 +1,77 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://P7IVESC.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://P7IVESC.github.io</link></image><lastBuildDate>Thu, 05 Nov 2026 06:09:55 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>P7IVESC's blog</title><link>https://P7IVESC.github.io</link><description>知其黑，守其白。技术交流请备注来源：emhlcGluZzA1MDc=</description><copyright>P7IVESC's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/237383456?v=4&amp;size=64</url><title>avatar</title><link>https://P7IVESC.github.io</link></image><lastBuildDate>Thu, 05 Nov 2026 06:19:23 +0000</lastBuildDate><managingEditor>P7IVESC's blog</managingEditor><ttl>60</ttl><webMaster>P7IVESC's blog</webMaster><item><title>域控服务器的部署及域渗透</title><link>https://P7IVESC.github.io/post/yu-kong-fu-wu-qi-de-bu-shu-ji-yu-shen-tou.html</link><description>完成域控服务器的部署，并实现添加计算机到当前域
+1.为 windows server 2008 安装 DNS 及 AD 域控制器
+考虑到后续使用的便利性，现对域控服务器的 IP 地址进行指定，配置如下：
+&lt;img width='200' height='208' alt='Image' src='https://github.com/user-attachments/assets/9e14f85d-e21c-4672-b333-f5d56356ce43' /&gt;
+1.1安装DNS服务器
+启动服务器管理器，安装DNS服务器
+&lt;img width='349' height='196' alt='Image' src='https://github.com/user-attachments/assets/e48f3402-629e-44b5-b1c9-f4cc09ba08d8' /&gt;
+在“正向查找区域”点击鼠标右键，选择“新建区域”
+&lt;img width='200' height='145' alt='Image' src='https://github.com/user-attachments/assets/2deb7242-97e5-4bc6-a6e4-b24ce711b1b2' /&gt;
+
+&lt;img width='409' height='110' alt='Image' src='https://github.com/user-attachments/assets/1a988c9e-2adc-4424-b210-e6082045ffa9' /&gt;
+
+&lt;img width='203' height='233' alt='Image' src='https://github.com/user-attachments/assets/eb29b17e-0916-44dc-880a-8393cd52c906' /&gt;
+
+1.2安装AD域服务
+&lt;img width='381' height='260' alt='Image' src='https://github.com/user-attachments/assets/f1d6d1da-edd5-4df9-9003-251e24314824' /&gt;
+&lt;img width='349' height='222' alt='Image' src='https://github.com/user-attachments/assets/bd339e82-7649-42f3-b9e6-fb584513becd' /&gt;
+配置 Active Directory 域服务
+开始菜单–&gt;运行–&gt;输入命令 dcpromo 点击“确定” 按钮
+&lt;img width='251' height='223' alt='Image' src='https://github.com/user-attachments/assets/0c025a2e-b276-45e0-97ca-c7333a0b6dc4' /&gt;
+
+&lt;img width='249' height='220' alt='Image' src='https://github.com/user-attachments/assets/2aafbd92-f0f6-46a7-8df4-8a2495ee0717' /&gt;
+
+&lt;img width='251' height='218' alt='Image' src='https://github.com/user-attachments/assets/b55109a1-9956-418e-908e-96e760e2c9a1' /&gt;
+
+&lt;img width='251' height='219' alt='Image' src='https://github.com/user-attachments/assets/f7e1a7ed-b812-4a04-afd3-2fdbbb773c6c' /&gt;
+
+&lt;img width='251' height='218' alt='Image' src='https://github.com/user-attachments/assets/df043305-f102-4daf-ae74-c6aa2472f701' /&gt;
+
+&lt;img width='249' height='219' alt='Image' src='https://github.com/user-attachments/assets/d08f2efb-7e57-4dee-8a87-6ae622a6d18b' /&gt;
+
+&lt;img width='218' height='140' alt='Image' src='https://github.com/user-attachments/assets/4590e200-c9f5-483d-b3f2-d8195f1a4c0f' /&gt;
+
+重启计算机
+
+&lt;img width='209' height='212' alt='Image' src='https://github.com/user-attachments/assets/04bea4bc-28c5-4f29-8920-595b13da3425' /&gt;
+
+2域控制器上创建用户user1
+
+&lt;img width='234' height='69' alt='Image' src='https://github.com/user-attachments/assets/3925c53c-e0ef-4ae0-9343-49a1887a154b' /&gt;
+
+&lt;img width='328' height='209' alt='Image' src='https://github.com/user-attachments/assets/a6669f61-8034-44ee-a84d-494da37cc52e' /&gt;
+
+3.前期登录域用户以及尝试访问域控制器
+Windows7使用x64 
+将客户端windows7注册到域 
+修改dns服务器地址与windows server 2008r2一样 
+Windows7：192.168.43.133
+2008R2-Server：192.168.43.136
+3.1 Windows7加入域 
+在Windows7中，先用ipconfig查看配置信息，再把自动改为指定：
+
+&lt;img width='336' height='213' alt='Image' src='https://github.com/user-attachments/assets/e5ba72f3-9474-4ed8-b647-d64df2e9942e' /&gt;
+
+修改为
+
+&lt;img width='206' height='217' alt='Image' src='https://github.com/user-attachments/assets/ad75d2b9-483d-4680-b83d-c85d403c32ea' /&gt;
+
+确定后，检测：
+
+&lt;img width='160' height='74' alt='Image' src='https://github.com/user-attachments/assets/71e563ce-038b-4429-b479-28d79f3da7e4' /&gt;
+
+再ping
+
+&lt;img width='254' height='124' alt='Image' src='https://github.com/user-attachments/assets/e0f2f3a9-bff9-4543-9104-574fa431f93b' /&gt;
+
+成功
+3.2再修改windows 7主机名及修改所属域
+
+&lt;img width='209' height='220' alt='Image' src='https://github.com/user-attachments/assets/10a541e0-3c89-4726-983d-736a363d0952' /&gt;
+
+&lt;img width='169' height='185' alt='Image' src='https://github.com/user-attachments/assets/67bdff03-43a7-441d-b6b3-2ac7df7ec5b9' /&gt;
+
+&lt;img width='218' height='130' alt='Image' src='https://github.com/user-attachments/assets/585d71d8-e2f8-4241-bb34-8bd412e35ce0' /&gt;
+
+输入上文创建的账号。</description><guid isPermaLink="true">https://P7IVESC.github.io/post/yu-kong-fu-wu-qi-de-bu-shu-ji-yu-shen-tou.html</guid><pubDate>Thu, 05 Nov 2026 06:09:28 +0000</pubDate></item></channel></rss>
