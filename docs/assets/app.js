@@ -8,6 +8,52 @@
 
   var hasPost = document.getElementById("postBody");
 
+  /* ---- 外部主页入口：改这里就能加/换链接 ---- */
+  var PROFILES = [
+    {
+      label: "EduSRC 个人主页",
+      href: "https://src.sjtu.edu.cn/profile/42619/",
+      note: "教育行业漏洞报告平台"
+    }
+  ];
+
+  var ICON_SHIELD =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+
+  var ICON_EXT =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ext">' +
+    '<path d="M7 17 17 7M9 7h8v8"/></svg>';
+
+  /* 头图区的链接按钮 */
+  function profileLinksHtml() {
+    return PROFILES.map(function (p) {
+      return (
+        '<a class="hero-link" href="' + esc(p.href) + '" target="_blank" rel="noopener noreferrer"' +
+        ' title="' + esc(p.note || p.label) + '">' +
+        ICON_SHIELD + "<span>" + esc(p.label) + "</span>" + ICON_EXT + "</a>"
+      );
+    }).join("");
+  }
+
+  /* 文章页侧栏的链接卡 */
+  function profileCard() {
+    if (!PROFILES.length) return null;
+    var card = document.createElement("div");
+    card.className = "side-card";
+    card.innerHTML =
+      "<h4>链接</h4>" +
+      PROFILES.map(function (p) {
+        return (
+          '<a class="side-link" href="' + esc(p.href) + '" target="_blank" rel="noopener noreferrer">' +
+          ICON_SHIELD + "<span>" + esc(p.label) + "</span>" + ICON_EXT + "</a>"
+        );
+      }).join("");
+    return card;
+  }
+
   /* ============================================================
      首页：把 Gmeek 的条目列表改造成卡片墙
      ============================================================ */
@@ -55,7 +101,9 @@
       "<span><b>" + countLabels(items) + "</b> 个标签</span>" +
       '<span><b class="stat-imgs">—</b> 图片</span>' +
       "<span><b>RSS</b> 订阅</span>" +
-      "</div></div>";
+      "</div>" +
+      '<div class="hero-links">' + profileLinksHtml() + "</div>" +
+      "</div>";
 
     var head = document.createElement("div");
     head.className = "section-head";
@@ -348,6 +396,9 @@
       '<div class="side-row"><span>图片</span><span>' + imgs.length + " 张</span></div>" +
       '<div class="side-row"><span>阅读</span><span>约 ' + mins + " 分钟</span></div>";
     side.appendChild(info);
+
+    var linkCard = profileCard();
+    if (linkCard) side.appendChild(linkCard);
 
     var top = document.createElement("div");
     top.className = "side-card";

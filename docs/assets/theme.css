@@ -171,6 +171,69 @@ body:has(.hero) .hero { padding-top: 10px; }
 .hero-stats b { color: var(--fg); font-weight: 600; font-size: 15px; }
 .hero-stats span { display: inline-flex; align-items: baseline; gap: 5px; }
 
+/* 头图区外链按钮（EduSRC 等） */
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 12px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--fg-soft) !important;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none !important;
+  transition: color 0.18s, border-color 0.18s, background 0.18s,
+    transform 0.18s, box-shadow 0.18s;
+}
+.hero-link svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  color: var(--fg-mute);
+  transition: color 0.18s;
+}
+.hero-link svg.ext { width: 12px; height: 12px; opacity: 0.45; margin-left: -1px; }
+.hero-link:hover {
+  color: var(--accent) !important;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+.hero-link:hover svg { color: var(--accent); }
+.hero-link:hover svg.ext { opacity: 0.9; }
+
+/* 侧栏链接卡 */
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: var(--fg-soft) !important;
+  text-decoration: none !important;
+  transition: color 0.18s;
+}
+.side-link svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  color: var(--fg-mute);
+  transition: color 0.18s;
+}
+.side-link svg.ext { width: 12px; height: 12px; margin-left: auto; opacity: 0.4; }
+.side-link:hover { color: var(--accent) !important; }
+.side-link:hover svg { color: var(--accent); }
+
 .section-head {
   display: flex;
   align-items: baseline;
@@ -478,18 +541,6 @@ body:has(.hero) .hero { padding-top: 10px; }
 .side-row { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; }
 .side-row span:first-child { color: var(--fg-mute); }
 .side-row span:last-child { color: var(--fg); font-variant-numeric: tabular-nums; }
-
-.side-link {
-  display: block;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--line);
-  color: var(--accent) !important;
-  text-decoration: none;
-  font-size: 12.5px;
-  transition: opacity 0.2s;
-}
-.side-link:hover { opacity: 0.72; }
 
 #toc { list-style: none; margin: 0; padding: 0; }#toc li { margin: 0; }
 #toc a {
